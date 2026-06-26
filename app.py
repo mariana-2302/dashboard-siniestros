@@ -201,24 +201,24 @@ with tab_res:
     fig.update_layout(**LB, height=200, title=_t("Evolución de siniestros por año"))
     fig.update_xaxes(_xax(dtick=1, tickformat="d"))
     fig.update_yaxes(_yax())
-    st.plotly_chart(fig, use_container_width=True, key="res_evol")
+    st.plotly_chart(fig, use_container_width=True,config={"displayModeBar": False}, key="res_evol")
 
     c1, c2, c3 = st.columns(3)
     with c1:
         st.plotly_chart(
             bar_h(top_departamentos(anio=anio_sel),
                   "total", "departamento", 300, "Top 10 departamentos"),
-            use_container_width=True, key="res_dep")
+            use_container_width=True,config={"displayModeBar": False}, key="res_dep")
     with c2:
         st.plotly_chart(
             bar_h(top_causas(anio=anio_sel, departamento=depto_sel),
                   "total", "causa", 300, "Top 10 causas", tick_size=9),
-            use_container_width=True, key="res_cau")
+            use_container_width=True,config={"displayModeBar": False}, key="res_cau")
     with c3:
         st.plotly_chart(
             bar_h(tipo_vehiculo(anio=anio_sel, departamento=depto_sel),
                   "total", "vehiculo", 300, "Tipo de vehículo", tick_size=9),
-            use_container_width=True, key="res_veh")
+            use_container_width=True,config={"displayModeBar": False}, key="res_veh")
 
 # ══════════════════════════════════════════════════════════════
 # GEOGRAFÍA
@@ -258,18 +258,18 @@ with tab_geo:
         st.plotly_chart(
             bar_h(top_departamentos(anio=anio_sel),
                   "total", "departamento", 300, "Top 10 departamentos"),
-            use_container_width=True, key="geo_dep")
+            use_container_width=True,config={"displayModeBar": False}, key="geo_dep")
     with g2:
         st.plotly_chart(
             bar_h(top_distritos(anio=anio_sel, departamento=depto_sel),
                   "total", "distrito", 300, "Top 10 distritos"),
-            use_container_width=True, key="geo_dis")
+            use_container_width=True,config={"displayModeBar": False}, key="geo_dis")
 
     df_car = top_carreteras(anio=anio_sel)
     st.plotly_chart(
         bar_v(df_car, "codigo_carretera", "total", 240,
               "Top 10 carreteras con más siniestros"),
-        use_container_width=True, key="geo_car")
+        use_container_width=True,config={"displayModeBar": False}, key="geo_car")
 
 # ══════════════════════════════════════════════════════════════
 # FACTORES
@@ -281,22 +281,22 @@ with tab_fac:
         st.plotly_chart(
             donut(siniestros_clima(anio=anio_sel, departamento=depto_sel),
                   "condicion_climatica", "total", 280, "Condición climática"),
-            use_container_width=True, key="fac_cli")
+            use_container_width=True,config={"displayModeBar": False}, key="fac_cli")
     with f2:
         st.plotly_chart(
             bar_v(siniestros_tipo_via(anio=anio_sel, departamento=depto_sel),
                   "tipo_via", "total", 280, "Tipo de vía"),
-            use_container_width=True, key="fac_via")
+            use_container_width=True,config={"displayModeBar": False}, key="fac_via")
     with f3:
         st.plotly_chart(
             donut(vehiculos_soat(anio=anio_sel, departamento=depto_sel),
                   "posee_seguro", "total", 280, "Posee SOAT"),
-            use_container_width=True, key="fac_soat")
+            use_container_width=True,config={"displayModeBar": False}, key="fac_soat")
 
     st.plotly_chart(
         bar_h(top_causas(anio=anio_sel, departamento=depto_sel),
               "total", "causa", 300, "Top 10 causas de siniestros", tick_size=10),
-        use_container_width=True, key="fac_cau")
+        use_container_width=True,config={"displayModeBar": False}, key="fac_cau")
 
 # ══════════════════════════════════════════════════════════════
 # VÍCTIMAS
@@ -325,18 +325,18 @@ with tab_vic:
                                       orientation="h", y=-0.5))
         fig.update_xaxes(_xax())
         fig.update_yaxes(_yax(showgrid=False))
-        st.plotly_chart(fig, use_container_width=True, key="vic_sex")
+        st.plotly_chart(fig, use_container_width=True,config={"displayModeBar": False}, key="vic_sex")
 
     with v2:
         st.plotly_chart(
             bar_v(fallecidos_edad(anio=anio_sel, departamento=depto_sel),
                   "rango_edad", "total", 260, "Fallecidos por rango de edad"),
-            use_container_width=True, key="vic_edad")
+            use_container_width=True,config={"displayModeBar": False}, key="vic_edad")
 
     st.plotly_chart(
         donut(licencia_conductor(anio=anio_sel, departamento=depto_sel),
               "posee_licencia", "total", 280, "Posee licencia de conducir"),
-        use_container_width=True, key="vic_lic")
+        use_container_width=True,config={"displayModeBar": False}, key="vic_lic")
 
 # ══════════════════════════════════════════════════════════════
 # VEHÍCULOS
@@ -346,14 +346,14 @@ with tab_veh:
     st.plotly_chart(
         bar_h(tipo_vehiculo(anio=anio_sel, departamento=depto_sel),
               "total", "vehiculo", 380, "Tipo de vehículo involucrado", tick_size=10),
-        use_container_width=True, key="veh_tipo")
+        use_container_width=True,config={"displayModeBar": False}, key="veh_tipo")
 
     vh1, vh2 = st.columns(2)
     with vh1:
         st.plotly_chart(
             donut(vehiculos_soat(anio=anio_sel, departamento=depto_sel),
                   "posee_seguro", "total", 280, "Posee SOAT"),
-            use_container_width=True, key="veh_soat")
+            use_container_width=True,config={"displayModeBar": False}, key="veh_soat")
     with vh2:
         df_top5 = tipo_vehiculo(anio=anio_sel, departamento=depto_sel).head(5)
         fig = go.Figure(go.Pie(
@@ -366,7 +366,7 @@ with tab_veh:
                           showlegend=True,
                           legend=dict(font=dict(size=9, family="DM Sans"),
                                       orientation="v", x=1.02, y=0.5))
-        st.plotly_chart(fig, use_container_width=True, key="veh_top5")
+        st.plotly_chart(fig, use_container_width=True,config={"displayModeBar": False}, key="veh_top5")
 
 # ── Footer ────────────────────────────────────────────────────
 st.markdown("""
